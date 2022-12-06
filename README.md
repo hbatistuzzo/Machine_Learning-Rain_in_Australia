@@ -1,6 +1,16 @@
 ## Descrição
 
- 
+![GitHub top language](https://img.shields.io/github/languages/top/hbatistuzzo/Case-Itau-Henrique)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/hbatistuzzo/Case-Itau-Henrique)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/hbatistuzzo/Case-Itau-Henrique)
+![GitHub last commit](https://img.shields.io/github/last-commit/hbatistuzzo/Case-Itau-Henrique)
+
+Project status: In Progress
+
+# Project Summary
+<p align="right"><img src="images/Ambev_logo_2015.svg.png" width="40%" alt="Logo"></p>
+
+
 Este case consiste em um exercício prático de construção de um modelo e quais insights você consegue extrair dos dados.
 
 Desenhamos o case para que você possa mostrar as suas habilidades como cientista de dados.
