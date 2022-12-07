@@ -26,7 +26,6 @@ Australia, the goal of this project is to train a model on short-term rainfall p
 	- Seaborn 0.11.2
 	- Matplotlib 3.5.2
 	- Scikit-learn 1.1
-	- Seaborn 0.11.2
 
 ---
 
@@ -177,6 +176,64 @@ wind_rain =pd.merge(rain_new,wind,on=['date','location'],how ='left')
 
 <p align="right"><img src="images/merged_nans.png" width="100%" alt="mn"></p>
 
+There is some additional pre-processing that can be performed here:
+
+- Currently, our merged dataset has a shape of 142.193 rows x 27 columns. It can be trimmed a little bit more.
+- `date` is a particularly useful attribute, especially considering that we have about 10 years of data. Embedded in this temporal series is the climate variability in scales
+ranging from sazonal to inter-annual (and even a parcel of the so called long-term effect due to accelerated heating in the 21st century). The effects of seasons and
+large-scale temporal phenomena such as the ENSO are all modulating the weather described in the dataset. That being said, the "date" atribute per se will not affect the model,
+so for now we can hide it.
+
+```
+wrc.drop('date', axis=1, inplace=True)
+```
+
+**what should be done with the NaNs?**
+
+- For numerical attributes, there are straightforward options e.g. interpolation, or even dropping them altogether for a baseline.
+- Categorical attributes requires some creativity.
+
+We know that the NaNs in raintoday are < 1% of the total length, so I'm tempted to drop these NaNs. This column is, after all, one of our most precious predictors. Some colleagues sugested converting all NaNs to "No". I think that will unnecessarily polute our database. On the other hand, we are dropping over 1000 datapoints..
+
+`wrc = wrc[wrc['raintoday'].notna()]` drops us from 142193 to 140787.
+
+- raintoday and raintomorrow are clean, and are already encoded as 0s and 1s. I guess we could have used a label encoder e.g.
+
+```
+# from sklearn.preprocessing import LabelEncoder
+# encoder = LabelEncoder()
+# label_encoder_columns = ['RainToday', 'RainTomorrow']
+# for column in label_encoder_columns:
+#   data[column] = encoder.fit_transform(data[column])
+```
+
+Location is still an object. Our model won't like that a whole lot, so what can we do?
+
+    ... How about onehotencoding? It's good for those attributes without any particular order, BUT... We will run into an issue. Both winddir9am and winddir3pm have the same label (e.g. NE), so onehotencoding will create duplicate values, which is awful. To fix this, we will need to add a prefix to differentiate between them.
+
+```
+def add_column_prefixes(data, column, prefix):
+    return data[column].apply(lambda x: prefix + str(x)) # return that specific column that we will apply "take x (value of the column" and add the prefix to it"
+```
+
+Now we apply:
+
+```
+wrc['winddir9am'] = add_column_prefixes(wrc,'winddir9am', '9am_')
+wrc['winddir3pm'] = add_column_prefixes(wrc,'winddir3pm', '3pm_')
+```
+
+This also solves the issue with `windgustdir` as it has become unique now:
+
+|     | winddir9am | winddir3pm | windgustdir |
+|----:|-----------:|-----------:|------------:|
+|   0 |      9am_W |    3pm_WNW |           W |
+|   1 |    9am_NNW |    3pm_WSW |         WNW |
+|   2 |      9am_W |    3pm_WSW |         WSW |
+|   3 |     9am_SE |      3pm_E |          NE |
+|   4 |    9am_ENE |     3pm_NW |           W |
+| ... |        ... |        ... |         ... 
+
 ---
 
 <p align="right"><img src="images/pairplot.png" width="100%" alt="pp"></p>
@@ -206,3 +263,13 @@ g = g.map(sns.distplot, "value") #overlay a distplot on top of it
 - Many variables displaying high normality: temperature, humidity and pressure, as expected.
 - Why is precipitation3pm so different from precipitation9am? It looks more reasonable in the morning. Inspect the data.
 - Wind data is more finicky.
+
+---
+
+# Modelling
+
+- Currently, our merged dataset has a shape of 142.193 rows x 27 columns. It can be trimmed a little bit more.
+- `date` is a particularly useful attribute, especially considering that we have about 10 years of data. Embedded in this temporal series is the climate variability in scales
+ranging from sazonal to inter-annual (and even a parcel of the so called long-term effect due to accelerated heating in the 21st century). The effects of seasons and
+large-scale temporal phenomena such as the ENSO are all modulating the weather described in the dataset. That being said, the "date" atribute per se will not affect the model,
+so for now we can hide it.
