@@ -157,12 +157,13 @@ wind.head()
 ```
 
 **Snapshot**
-| 0 | 2007-11-01 | Canberra |  NW | 30.0 |  SW |  NW |  6.0 | 20.0 |
-|--:|-----------:|---------:|----:|-----:|----:|----:|-----:|-----:|
-| 1 | 2007-11-02 | Canberra | ENE | 39.0 |   E |   W |  4.0 | 17.0 |
-| 2 | 2007-11-03 | Canberra |  NW | 85.0 |   N | NNE |  6.0 |  6.0 |
-| 3 | 2007-11-04 | Canberra |  NW | 54.0 | WNW |   W | 30.0 | 24.0 |
-| 4 | 2007-11-05 | Canberra | SSE | 50.0 | SSE | ESE | 20.0 | 28.0 |
+|   |       date | location | windgustdir | windgustspeed | winddir9am | winddir3pm | windspeed9am | windspeed3pm |
+|--:|-----------:|---------:|------------:|--------------:|-----------:|-----------:|-------------:|-------------:|
+| 0 | 2007-11-01 | Canberra |          NW |          30.0 |         SW |         NW |          6.0 |         20.0 |
+| 1 | 2007-11-02 | Canberra |         ENE |          39.0 |          E |          W |          4.0 |         17.0 |
+| 2 | 2007-11-03 | Canberra |          NW |          85.0 |          N |        NNE |          6.0 |          6.0 |
+| 3 | 2007-11-04 | Canberra |          NW |          54.0 |        WNW |          W |         30.0 |         24.0 |
+| 4 | 2007-11-05 | Canberra |         SSE |          50.0 |        SSE |        ESE |         20.0 |         28.0 |
 
 <p align="right"><img src="images/wind_nans.png" width="100%" alt="wn"></p>
 
