@@ -95,6 +95,7 @@ RainTomorrow |  The target variable. Did it rain tomorrow?
 | 4 | 2008-12-05 |   Albury |    17.5 |    32.3 |      1.0 |         NaN |      NaN |        82.0 |        33.0 |      1010.8 |      1006.0 |      7.0 |      8.0 |    17.8 |    29.7 |        No |          0.2 |           No | 40.76 | 41.600000 |                9 |        11.883546 |       0.220164 |
 
 **insights**
+- shape: 142193 rows × 21 columns
 - _raintoday_ is either Yes or No, based on _rainfall_. Yes if _rainfall_ > 1.0, NO if _rainfall_ < 1.0
 - _amountOfRain is the variable _rainfall_ with a 1-day lag. This column will be dropped to avoid data leaking.
 - _modelo-vigente_ is an artificial column left in the case without further explanations. Will also be dropped (but let's keep an eye on it).
@@ -165,13 +166,26 @@ wind.head()
 | 3 | 2007-11-04 | Canberra |          NW |          54.0 |        WNW |          W |         30.0 |         24.0 |
 | 4 | 2007-11-05 | Canberra |         SSE |          50.0 |        SSE |        ESE |         20.0 |         28.0 |
 
-<p align="right"><img src="images/wind_nans.png" width="100%" alt="wn"></p>
+**Insights**
 
----
+- shape: (164386, 8)
+- date is also object here. Convert to datetime.
+- several NaNs in several columns.
+- wind[wind.duplicated()] yields a bunch of duplicates! Lets deal with them: wind=wind.drop_duplicates().reset_index(drop=True)
+- After dropping duplicates, shape is (142193, 8), same number of rows as the rain dataset!
 
 <p align="right"><img src="images/wind_nans_correto.png" width="100%" alt="wnc"></p>
 
 ---
+
+## Merging both datasets on date and location:
+
+```
+wind_rain =pd.merge(rain_new,wind,on=['date','location'],how ='left')
+```
+
+- New shape is (142193, 27).
+- Final view of NaNs:
 
 <p align="right"><img src="images/merged_nans.png" width="100%" alt="mn"></p>
 
