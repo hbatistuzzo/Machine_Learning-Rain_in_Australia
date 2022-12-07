@@ -13,7 +13,9 @@ Project status: In Progress
 
 Given that it rains today, will it rain again tomorrow?
 Real-time accurate rainfall prediction is challenging due to the inherent non-linear nature of weather. Using a database of meteorological variables in different cities of
-Australia, the goal of this project is to train a model on short-term rainfall prediction (forecasting range up to 72 hours).---
+Australia, the goal of this project is to train a model on short-term rainfall prediction (forecasting range up to 72 hours).
+
+---
 
 # Technologies
 
@@ -25,33 +27,17 @@ Australia, the goal of this project is to train a model on short-term rainfall p
 	- Matplotlib 3.5.2
 	- Scikit-learn 1.1
 	- Seaborn 0.11.2
-- Tableau 2022.3
-
----
-
-## The Original Case (in portuguese):
-
-Este case consiste em um exercício prático de construção de um modelo e quais insights você consegue extrair dos dados.
-
-Desenhamos o case para que você possa mostrar as suas habilidades como cientista de dados.
-
-O conjunto de dados que fornecemos contém observações diárias do clima de algumas estações meteorológicas na Austrália.
- 
-Os dados estão organizados em duas tabelas:
-
-- `rain_data_aus.csv`: Contém a maior parte das informações, já centralizadas, de todas as estações.
-
-- `wind_table_01.csv a wind_table_08.csv`: Contém informações sobre velocidade e orientação de ventos.
-
-As tabelas estão apartadas, pois são originadas de um outro instrumento e salvas em um sistema apartado.
-
-Submeta os arquivos em um repositório no git e nos envie o link para avaliação.
-
-Idealmente, queremos poder replicar sua análise a partir dos códigos enviados. Portanto, especifique as versões das ferramentas e pacotes que você está usando.
 
 ---
 
 ## Data Description
+
+- This dataset is also utilized in a case for the position of Data Scientist in a Brazilian bank.
+- The data is organized in two sets:
+	- `rain_data_aus.csv`: Contains most of the information for all stations.
+	- `wind_table_01.csv to wind_table_08.csv`: Contains additional information on wind speed and direction.
+
+- The sets are separated since they originate from different systems of meteorological instrumentation..
 
 Variable | Description
 ---------|------------
@@ -82,7 +68,7 @@ AmountOfRain |  The amount of rain in mm
 Temp |  Temperature (degrees C)
 Humidity |  Humidity (percent)
 RainToday |  Boolean: 1 if precipitation (mm) in the 24 hours to 9am exceeds 1mm, otherwise 0
-RainTomorrow |  The target variable. Did it rain tomorrow?
+RainTomorrow |  **The target variable. Will it rain tomorrow?**
 
 ---
 ## Data Inspection and Pre-processing: Rain data
