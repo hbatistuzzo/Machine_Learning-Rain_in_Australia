@@ -204,4 +204,17 @@ preserve the full meaning of the variables, defined as an arithmetic mean betwee
 
 ---
 
+Analyzing the distribution of numerical variables:
+
+```
+f = pd.melt(df, value_vars=df.select_dtypes(include=[np.number]).columns) #create a gigantic list of sequential values ordered by variable (mintemp, maxtemp, rainfall, etc)
+g = sns.FacetGrid(f, col="variable",  col_wrap=2, sharex=False, sharey=False) #create a grid for each variable
+g = g.map(sns.distplot, "value") #overlay a distplot on top of it
+```
 <p align="right"><img src="images/distplot.png" width="100%" alt="dp"></p>
+
+**Insights**
+
+- Many variables displaying high normality: temperature, humidity and pressure, as expected.
+- Why is precipitation3pm so different from precipitation9am? It looks more reasonable in the morning. Inspect the data.
+- Wind data is more finicky.
