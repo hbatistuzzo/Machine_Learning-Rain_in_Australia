@@ -7,7 +7,7 @@
 
 Project status: In Progress
 
-<p align="center"><img src="images/dataset_cover.jpg" width="100%" alt="rn"></p>
+<p align="center"><img src="images/dataset-cover.jpg" width="100%" alt="rn"></p>
 
 # Project Summary
 
