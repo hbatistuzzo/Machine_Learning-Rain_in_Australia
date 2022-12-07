@@ -119,8 +119,30 @@ RainTomorrow |  The target variable. Did it rain tomorrow?
 - I find that a "describe heatmap" is also useful to catch discrepancies in the data.
 
 <p align="right"><img src="images/describe_heatmap.png" width="100%" alt="rn"></p>
+
+**Additional info**
+
+- rain_new['location'].unique().size yields 49 unique locations (cities).
+- rain_new['location'].value_counts() shows that the input for each city is not equal. Some cities (e.g. Canberra, Sydney, Perth) have over 3.000 data points, while others
+(e.g. Nhil, Katherine, Uluru) have less than 1.600 data points.
+- rain_new['date'].unique() yields 3436 distinct dates. The dataset ranges from '2007-11-01' to '2017-06-25', about 9 years and a half of data.
+- some preprocessing fits here: Yes and No to 1s and 0s respectively (the model appreciates!)
+
+```
+rain_new.loc[rain_new['raintoday'] == 'No','raintoday'] = 0
+rain_new.loc[rain_new['raintoday'] == 'Yes','raintoday'] = 1
+
+rain_new.loc[rain_new['raintomorrow'] == 'No','raintomorrow'] = 0
+rain_new.loc[rain_new['raintomorrow'] == 'Yes','raintomorrow'] = 1
+```
+
+- Finally, our dataset shape is now 142193 rows × 21 columns
+
 ---
 
+## Data Inspection: Wind data 1-8
+
+Other than the rain data, we are also given 8 separate csv files with wind data. Let's import, concatenate, inspect and pre-process it.
 <p align="right"><img src="images/wind_nans.png" width="100%" alt="wn"></p>
 
 ---
