@@ -234,7 +234,8 @@ This also solves the issue with `windgustdir` as it has become unique now:
 |   4 |    9am_ENE |     3pm_NW |           W |
 | ... |        ... |        ... |         ... 
 
-`pd.get_dummies(wrc['windgustdir'])` - every unique value has been assigned a column of its own, as such:
+`pd.get_dummies(wrc['windgustdir'])` will onehotencode this particular variabl
+- every unique value has been assigned a column of its own, as such:
 
 |   | E | ENE | ESE | N | NE | NNE | NNW | NW | S | SE | SSE | SSW | SW | W | WNW | WSW |
 |--:|--:|----:|----:|--:|---:|----:|----:|---:|--:|---:|----:|----:|---:|--:|----:|----:|
@@ -244,6 +245,7 @@ This also solves the issue with `windgustdir` as it has become unique now:
 | 3 | 0 |   0 |   0 | 0 |  1 |   0 |   0 |  0 | 0 |  0 |   0 |   0 |  0 | 0 |   0 |   0 |
 | 4 | 0 |   0 |   0 | 0 |  0 |   0 |   0 |  0 | 0 |  0 |   0 |   0 |  0 | 1 |   0 |   0 | 
 
+- But most importantly, whenever there is a NaN in a row, every dummy is assigned a zero.
 
 ---
 
