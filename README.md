@@ -246,8 +246,34 @@ This also solves the issue with `windgustdir` as it has become unique now:
 | 4 | 0 |   0 |   0 | 0 |  0 |   0 |   0 |  0 | 0 |  0 |   0 |   0 |  0 | 1 |   0 |   0 | 
 
 - But most importantly, whenever there is a NaN in a row, every dummy is assigned a zero.
+- Now we will create a function that will apply the dummies matrix for each of our categorical features that need onehotencoding
 
+```
+def onehot_encoder(data,columns):
+    for column in columns:
+        dummies = pd.get_dummies(data[column])
+        data = pd.concat([data,dummies],axis=1) # this will _really_ increase our number of columns, but that should be fine
+        data.drop(column,axis=1,inplace=True) # remove the original column from which we got the encodings.
+    return data
+```
+
+After which our 4 categorical variables are gone and have been replaced with their respective dummies! This will really help our model run.
+
+- We must now deal with the NaNs from the numerical attributes.
+- One of the options in this case is to compute the mean in each column and set all the null values in that column to be the mean of that column.
+
+```
+def apply_means(data,columns):
+    for column in columns:
+        data[column] = data[column].fillna(data[column].mean())
+```
+
+- I suppose this can deal with our null values without altering the variance of the feature too much.
+- After applying, `wrc3.isnull().sum().sum()` shows not a single NaN left!
+- Our final, cleaned and processed dataset is ready to be ingested by the model. Final shape: (140787, 121)
 ---
+
+**our dataset is ready, but let's take a step back to look at the relationships between variables**
 
 <p align="right"><img src="images/pairplot.png" width="100%" alt="pp"></p>
 
@@ -281,8 +307,4 @@ g = g.map(sns.distplot, "value") #overlay a distplot on top of it
 
 # Modelling
 
-- Currently, our merged dataset has a shape of 142.193 rows x 27 columns. It can be trimmed a little bit more.
-- `date` is a particularly useful attribute, especially considering that we have about 10 years of data. Embedded in this temporal series is the climate variability in scales
-ranging from sazonal to inter-annual (and even a parcel of the so called long-term effect due to accelerated heating in the 21st century). The effects of seasons and
-large-scale temporal phenomena such as the ENSO are all modulating the weather described in the dataset. That being said, the "date" atribute per se will not affect the model,
-so for now we can hide it.
+
