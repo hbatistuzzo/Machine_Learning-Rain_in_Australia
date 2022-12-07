@@ -1,11 +1,13 @@
-## Descrição
-
 ![GitHub top language](https://img.shields.io/github/languages/top/hbatistuzzo/Case-Itau-Henrique)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/hbatistuzzo/Case-Itau-Henrique)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/hbatistuzzo/Case-Itau-Henrique)
 ![GitHub last commit](https://img.shields.io/github/last-commit/hbatistuzzo/Case-Itau-Henrique)
 
+# Predicting rain in Australia with Machine Learning
+
 Project status: In Progress
+
+<p align="center"><img src="images/dataset.cover.jpg" width="100%" alt="rn"></p>
 
 # Project Summary
 
@@ -103,7 +105,7 @@ RainTomorrow |  The target variable. Did it rain tomorrow?
 - No duplicates here.
 - Several NaNs in several columns. Investigate.
 
-<p align="right"><img src="images/rain_nans.png" width="100%" alt="rn"></p>
+<p align="center"><img src="images/rain_nans.png" width="100%" alt="rn"></p>
 
 - pd.describe is always an useful tool to get an initial bird-eye view of the dataset:
 
