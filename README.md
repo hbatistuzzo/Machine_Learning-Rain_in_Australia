@@ -85,6 +85,7 @@ RainTomorrow |  The target variable. Did it rain tomorrow?
 ---
 ## Data Inspection and Pre-processing: Rain data
 
+**Snapshot**
 |   |       date | location | mintemp | maxtemp | rainfall | evaporation | sunshine | humidity9am | humidity3pm | pressure9am | pressure3pm | cloud9am | cloud3pm | temp9am | temp3pm | raintoday | amountOfRain | raintomorrow |  temp |  humidity | precipitation3pm | precipitation9am | modelo_vigente |
 |---|-----------:|---------:|--------:|--------:|---------:|------------:|---------:|------------:|------------:|------------:|------------:|---------:|---------:|--------:|--------:|----------:|-------------:|-------------:|------:|----------:|-----------------:|-----------------:|---------------:|
 | 0 | 2008-12-01 |   Albury |    13.4 |    22.9 |      0.6 |         NaN |      NaN |        71.0 |        22.0 |      1007.7 |      1007.1 |      8.0 |      NaN |    16.9 |    21.8 |        No |          0.0 |           No | 29.48 | 28.400000 |               12 |         5.115360 |       0.089825 |
@@ -142,7 +143,27 @@ rain_new.loc[rain_new['raintomorrow'] == 'Yes','raintomorrow'] = 1
 
 ## Data Inspection: Wind data 1-8
 
-Other than the rain data, we are also given 8 separate csv files with wind data. Let's import, concatenate, inspect and pre-process it.
+Other than the rain data, we are also given 8 separate csv files with wind data. Let's import, concatenate, inspect and pre-process it
+
+```
+wind = pd.DataFrame()
+for i in range(1, 9):
+    df_ = pd.read_csv(f'data/wind_table_0{i}.csv')
+    df_.columns = [col.replace("_", "") for col in df_.columns] # Column headers are different in some files. This line fixes the issue!
+    wind = pd.concat([wind, df_])
+    print(wind.shape)
+print(wind.shape)
+wind.head()
+```
+
+**Snapshot**
+| 0 | 2007-11-01 | Canberra |  NW | 30.0 |  SW |  NW |  6.0 | 20.0 |
+|--:|-----------:|---------:|----:|-----:|----:|----:|-----:|-----:|
+| 1 | 2007-11-02 | Canberra | ENE | 39.0 |   E |   W |  4.0 | 17.0 |
+| 2 | 2007-11-03 | Canberra |  NW | 85.0 |   N | NNE |  6.0 |  6.0 |
+| 3 | 2007-11-04 | Canberra |  NW | 54.0 | WNW |   W | 30.0 | 24.0 |
+| 4 | 2007-11-05 | Canberra | SSE | 50.0 | SSE | ESE | 20.0 | 28.0 |
+
 <p align="right"><img src="images/wind_nans.png" width="100%" alt="wn"></p>
 
 ---
