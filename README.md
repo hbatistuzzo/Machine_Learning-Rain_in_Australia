@@ -8,9 +8,10 @@
 Project status: In Progress
 
 # Project Summary
-<p align="right"><img src="images/Ambev_logo_2015.svg.png" width="40%" alt="Logo"></p>
 
----
+Given that it rains today, will it rain again tomorrow?
+Real-time accurate rainfall prediction is challenging due to the inherent non-linear nature of weather. Using a database of meteorological variables in different cities of
+Australia, the goal of this project is to train a model on short-term rainfall prediction (forecasting range up to 72 hours).---
 
 # Technologies
 
@@ -26,7 +27,7 @@ Project status: In Progress
 
 ---
 
-## The Case
+## The Original Case (in portuguese):
 
 Este case consiste em um exercício prático de construção de um modelo e quais insights você consegue extrair dos dados.
 
@@ -45,12 +46,6 @@ As tabelas estão apartadas, pois são originadas de um outro instrumento e salv
 Submeta os arquivos em um repositório no git e nos envie o link para avaliação.
 
 Idealmente, queremos poder replicar sua análise a partir dos códigos enviados. Portanto, especifique as versões das ferramentas e pacotes que você está usando.
-
----
-
-## Objetivo:
-
-Construir um modelo preditivo para determinar se vai ou não chover amanhã. 
 
 ---
 
