@@ -86,3 +86,31 @@ Temp |  Temperature (degrees C)
 Humidity |  Humidity (percent)
 RainToday |  Boolean: 1 if precipitation (mm) in the 24 hours to 9am exceeds 1mm, otherwise 0
 RainTomorrow |  The target variable. Did it rain tomorrow?
+
+---
+
+<p align="right"><img src="images/rain_nans.png" width="100%" alt="rn"></p>
+
+---
+
+<p align="right"><img src="images/wind_nans.png" width="100%" alt="wn"></p>
+
+---
+
+<p align="right"><img src="images/wind_nans_correto.png" width="100%" alt="wnc"></p>
+
+---
+
+<p align="right"><img src="images/merged_nans.png" width="100%" alt="mn"></p>
+
+---
+
+<p align="right"><img src="images/pairplot.png" width="100%" alt="pp"></p>
+
+---
+
+<p align="right"><img src="images/corr_heatmap.png" width="100%" alt="ch"></p>
+
+---
+
+<p align="right"><img src="images/distplot.png" width="100%" alt="dp"></p>
