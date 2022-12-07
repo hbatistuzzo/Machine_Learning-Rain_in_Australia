@@ -197,6 +197,11 @@ wind_rain =pd.merge(rain_new,wind,on=['date','location'],how ='left')
 
 <p align="right"><img src="images/corr_heatmap.png" width="100%" alt="ch"></p>
 
+From the correlation matrix shown above, we can determine a desire cutoff point for highly correlated variable. Variables that are highly correlated with
+each other will have the same effect on the target variable. Hence, all the highly correlated variables are suggested to be removed from the analysis. The usual suspects
+are the pairs Temp9am/Temp3pm, Pressure9am/Pressure3pm, Humidity9am/Humidity3pm and cloud9am/cloud3pm. However, instead of removing one of the attributes in each pair, new variables will be created to
+preserve the full meaning of the variables, defined as an arithmetic mean between the pairs.
+
 ---
 
 <p align="right"><img src="images/distplot.png" width="100%" alt="dp"></p>
