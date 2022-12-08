@@ -26,6 +26,7 @@ Australia, the goal of this project is to train a model on short-term rainfall p
 	- Seaborn 0.11.2
 	- Matplotlib 3.5.2
 	- Scikit-learn 1.1
+	- TensorFlow 2.11.0
 
 ---
 
