@@ -335,33 +335,5 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.8) # trad
 
 - A TensorFlow neural network model will come in handy here due to the large number of columns in our dataset (high cardinality dataset)
 
-```
-inputs = tf.keras.Input(shape=(120,)) #input layer
-x = tf.keras.layers.Dense(16, activation='relu')(inputs) # x layer, Dense for a fully connected layer, 16 nodes
-x = tf.keras.layers.Dense(16, activation='relu')(x) # 3rd layer is the same, but now we are passing X
-outputs = tf.keras.layers.Dense(2, activation='softmax')(x) #last layer. Only 2 nodes, since we are trying to classify between Yes and No. Softmax yields a probability estimate for each category
-
-model = tf.keras.Model(inputs=inputs, outputs=outputs)
-```
-
-- A model.summary() yields:
-
-Model: "model_1"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- input_2 (InputLayer)        [(None, 120)]             0         
-                                                                 
- dense_3 (Dense)             (None, 16)                1936      
-                                                                 
- dense_4 (Dense)             (None, 16)                272       
-                                                                 
- dense_5 (Dense)             (None, 2)                 34        
-                                                                 
-=================================================================
-Total params: 2,242
-Trainable params: 2,242
-Non-trainable params: 0
-_________________________________________________________________
-
+<p align="center"><img src="images/model.png" width="100%" alt="model"></p>
 
