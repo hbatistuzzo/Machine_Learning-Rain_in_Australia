@@ -305,6 +305,13 @@ g = g.map(sns.distplot, "value") #overlay a distplot on top of it
 
 ---
 
-# Modelling
+<a id="3"></a>
+# <p style="padding:10px;background-color:#0fa79f;margin:0;color:#111423;font-family:newtimeroman;font-size:100%;text-align:center;border-radius: 15px 50px;overflow:hidden;font-weight:500">Predictive model</p>
+
+<center> <span style="font-family:newtimeroman"> <span style="padding:5px;color:white;display:fill;border-radius:20px 50px;background-color:#FDD667;font-size:200%;font-weight: 500;color:#111423;overflow:hidden;">ㅤScaling the model with RobustScalerㅤ</span>
+
+- Now we are ready to scale and train our model.
+
+
 
 
