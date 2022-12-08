@@ -305,12 +305,24 @@ g = g.map(sns.distplot, "value") #overlay a distplot on top of it
 
 ---
 
-<a id="3"></a>
-# <p style="padding:10px;background-color:#0fa79f;margin:0;color:#111423;font-family:newtimeroman;font-size:100%;text-align:center;border-radius: 15px 50px;overflow:hidden;font-weight:500">Predictive model</p>
+# Predictive Model
 
-<center> <span style="font-family:newtimeroman"> <span style="padding:5px;color:white;display:fill;border-radius:20px 50px;background-color:#FDD667;font-size:200%;font-weight: 500;color:#111423;overflow:hidden;">ㅤScaling the model with RobustScalerㅤ</span>
+- Now we are ready to scale and train our model. Both were done with SKLearn at this step.
 
-- Now we are ready to scale and train our model.
+```
+y = wrc3['raintomorrow'] # our target variable
+X = wrc3.drop(['raintomorrow'],axis=1) # everything except our target variable
+```
+
+OBS - `y.value_counts()` tells us that 22.16% of days had rain
+
+RobustScaler:
+```
+# Scale X using the RobustScaler (since the variables have so many different ranges)
+scaler = RobustScaler()
+
+X = pd.DataFrame(scaler.fit_transform(X),columns=X.columns) #scaler.fit_transform(x) will return a numpy array, so we put it back into a dataframe (easier to visualize)
+```
 
 
 
