@@ -107,7 +107,7 @@ RainTomorrow |  **The target variable. Will it rain tomorrow?**
 
 - I find that a "describe heatmap" is also useful to catch discrepancies in the data.
 
-<p align="right"><img src="images/describe_heatmap.png" width="100%" alt="rn"></p>
+<p align="center"><img src="images/describe_heatmap.png" width="100%" alt="rn"></p>
 
 **Additional info**
 
@@ -161,7 +161,7 @@ wind.head()
 - wind[wind.duplicated()] yields a bunch of duplicates! Lets deal with them: wind=wind.drop_duplicates().reset_index(drop=True)
 - After dropping duplicates, shape is (142193, 8), same number of rows as the rain dataset!
 
-<p align="right"><img src="images/wind_nans_correto.png" width="100%" alt="wnc"></p>
+<p align="center"><img src="images/wind_nans_correto.png" width="100%" alt="wnc"></p>
 
 ---
 
@@ -174,7 +174,7 @@ wind_rain =pd.merge(rain_new,wind,on=['date','location'],how ='left')
 - New shape is (142193, 27).
 - Final view of NaNs:
 
-<p align="right"><img src="images/merged_nans.png" width="100%" alt="mn"></p>
+<p align="center"><img src="images/merged_nans.png" width="100%" alt="mn"></p>
 
 There is some additional pre-processing that can be performed here:
 
@@ -275,11 +275,11 @@ def apply_means(data,columns):
 
 **our dataset is ready, but let's take a step back to look at the relationships between variables**
 
-<p align="right"><img src="images/pairplot.png" width="100%" alt="pp"></p>
+<p align="center"><img src="images/pairplot.png" width="100%" alt="pp"></p>
 
 ---
 
-<p align="right"><img src="images/corr_heatmap.png" width="100%" alt="ch"></p>
+<p align="center"><img src="images/corr_heatmap.png" width="100%" alt="ch"></p>
 
 From the correlation matrix shown above, we can determine a desire cutoff point for highly correlated variable. Variables that are highly correlated with
 each other will have the same effect on the target variable. Hence, all the highly correlated variables are suggested to be removed from the analysis. The usual suspects
@@ -295,7 +295,7 @@ f = pd.melt(df, value_vars=df.select_dtypes(include=[np.number]).columns) #creat
 g = sns.FacetGrid(f, col="variable",  col_wrap=2, sharex=False, sharey=False) #create a grid for each variable
 g = g.map(sns.distplot, "value") #overlay a distplot on top of it
 ```
-<p align="right"><img src="images/distplot.png" width="100%" alt="dp"></p>
+<p align="center"><img src="images/distplot.png" width="100%" alt="dp"></p>
 
 **Insights**
 
