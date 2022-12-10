@@ -278,6 +278,12 @@ def apply_means(data,columns):
 
 <p align="center"><img src="images/pairplot.png" width="100%" alt="pp"></p>
 
+**Insights**
+
+- There are many issues that have to be carefully observed here: many of the variables are strongly correlated.
+    - Sunshine/Evaporation/Cloud_cover are positively correlated with temp variables and negatively correlated with humidity variables.
+    - Both Random Forest and Gradient Boosting machines are more robust when dealing with multicolinearity, but others such as Logistic Regression will be __heavily__ impacted!
+
 ---
 
 <p align="center"><img src="images/corr_heatmap.png" width="100%" alt="ch"></p>
@@ -285,7 +291,7 @@ def apply_means(data,columns):
 From the correlation matrix shown above, we can determine a desire cutoff point for highly correlated variable. Variables that are highly correlated with
 each other will have the same effect on the target variable. Hence, all the highly correlated variables are suggested to be removed from the analysis. The usual suspects
 are the pairs Temp9am/Temp3pm, Pressure9am/Pressure3pm, Humidity9am/Humidity3pm and cloud9am/cloud3pm. However, instead of removing one of the attributes in each pair, new variables will be created to
-preserve the full meaning of the variables, defined as an arithmetic mean between the pairs.
+preserve the full meaning of the variables, defined as an arithmetic mean between the pairs. This still needs to be implemented!
 
 ---
 
@@ -383,3 +389,13 @@ And we can finally plot loss and val_loss:
 
 TO DO:
 - I need to compare our model when we substitute the NaNs in raintoday with No instead of dropping them (as was suggested).
+
+- There are 5 attributes whose distributions are making me uneasy due to their very visibly different medians!:
+
+<p align="center"><img src="images/unusable.png" width="100%" alt="unus"></p>
+
+- Wind direction is also bugging me. It clearly depends on the city (and the regional topography).
+
+We could consider feature engineering:
+- MaxTemp/Temp3pm are highly correlated so we could fill them by calculating the difference of the means between the two.
+- Same with MinTemp/Temp9am
