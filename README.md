@@ -378,6 +378,8 @@ And we can finally plot loss and val_loss:
 - Our model is done! We can evaluate it's accuracy now:
 `print(f'Model Accuracy: {model.evaluate(X_test,y_test, verbose=0)[1]}')` yields an accuracy of 0.86. Not bad!
 
+- I ran a second model after dropping the columns temp and humidity, as they are, simply put, weird. They are not the average of either maxtemp/mintemp or temp9am/temp3pm. I'm banishing them for now.
+- ... But model accuracy remained the same.
 
 TO DO:
 - I need to compare our model when we substitute the NaNs in raintoday with No instead of dropping them (as was suggested).
