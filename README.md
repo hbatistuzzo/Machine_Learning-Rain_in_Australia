@@ -337,3 +337,43 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.8) # trad
 
 <p align="center"><img src="images/model.png" width="100%" alt="model"></p>
 
+- Now to compile:
+
+```
+model.compile(
+    optimizer='adam',
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
+```
+
+- And to establish a standard number of epochs and batch size (which we will later refine):
+
+```
+EPOCHS = 10
+BATCH_SIZE = 32
+```
+
+- we fit the model on a new variable history:
+
+```
+history = model.fit(
+    X_train,
+    y_train,
+    validation_split=0.2,
+    epochs=EPOCHS,
+    batch_size=BATCH_SIZE,
+    verbose=1
+)
+```
+
+And we can finally plot loss and val_loss:
+
+<p align="center"><img src="images/loss.png" width="100%" alt="loss"></p>
+
+- To avoid overfitting, we choose the epoch with the minimum val_loss. In this case, it's the 7th one. Redefine EPOCHS = 7 and rerun the model.
+
+## Results
+
+- Our model is done! We can evaluate it's accuracy now:
+`print(f'Model Accuracy: {model.evaluate(X_test,y_test, verbose=0)[1]}')` yields an accuracy of 0.86. Not bad!
