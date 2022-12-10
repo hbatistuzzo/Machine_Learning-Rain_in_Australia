@@ -389,3 +389,13 @@ And we can finally plot loss and val_loss:
 
 TO DO:
 - I need to compare our model when we substitute the NaNs in raintoday with No instead of dropping them (as was suggested).
+
+- There are 5 attributes whose distributions are making me uneasy due to their very visibly different medians!:
+
+<p align="center"><img src="images/unusable.png" width="100%" alt="unus"></p>
+
+- Wind direction is also bugging me. It clearly depends on the city (and the regional topography).
+
+We could consider feature engineering:
+- MaxTemp/Temp3pm are highly correlated so we could fill them by calculating the difference of the means between the two.
+- Same with MinTemp/Temp9am
