@@ -377,3 +377,7 @@ And we can finally plot loss and val_loss:
 
 - Our model is done! We can evaluate it's accuracy now:
 `print(f'Model Accuracy: {model.evaluate(X_test,y_test, verbose=0)[1]}')` yields an accuracy of 0.86. Not bad!
+
+
+TO DO:
+- I need to compare our model when we substitute the NaNs in raintoday with No instead of dropping them (as was suggested).
