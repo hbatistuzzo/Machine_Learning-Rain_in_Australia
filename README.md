@@ -182,12 +182,8 @@ There is some additional pre-processing that can be performed here:
 - Currently, our merged dataset has a shape of 142.193 rows x 27 columns. It can be trimmed a little bit more.
 - `date` is a particularly useful attribute, especially considering that we have about 10 years of data. Embedded in this temporal series is the climate variability in scales
 ranging from sazonal to inter-annual (and even a parcel of the so called long-term effect due to accelerated heating in the 21st century). The effects of seasons and
-large-scale temporal phenomena such as the ENSO are all modulating the weather described in the dataset. That being said, the "date" atribute per se will not affect the model,
-so for now we can hide it.
-
-```
-wrc.drop('date', axis=1, inplace=True)
-```
+large-scale temporal phenomena such as the ENSO are all modulating the weather described in the dataset.
+	- We must take care, however, when using it to train and test the model (proportions).
 
 **what should be done with the NaNs?**
 
